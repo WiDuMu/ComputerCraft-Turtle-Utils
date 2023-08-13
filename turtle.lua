@@ -15,9 +15,9 @@ function turtle.suck()
   print("suck")
 end
 
-function turtle.digDown()
-  print("digDown")
-end
+-- function turtle.digDown()
+--   print("digDown")
+-- end
 
 function turtle.down()
   print("down")
@@ -71,15 +71,15 @@ function turtle.select(slotNum)
   gSlotNum = slotNum
 end
 
-function turtle.getItemDetail(slotNum)
-  local value = gItemDetails[slotNum];
-  if value ~= nil then
-    return value
-      --print(gItemDetails[math.random(#gItemDetails)].name)
-  else
-    return {name="random"}
-  end
-end
+-- function turtle.getItemDetail(slotNum)
+--   local value = gItemDetails[slotNum];
+--   if value ~= nil then
+--     return value
+--       --print(gItemDetails[math.random(#gItemDetails)].name)
+--   else
+--     return {name="random"}
+--   end
+-- end
 
 function turtle.getItemCount(slotNum)
   return math.random(64);

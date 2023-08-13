@@ -1,4 +1,6 @@
 local arguments = { ... }
+local turtle = require("turtle")
+local utils = require("utils")
 local firstSlot = turtle.getItemDetail(1)
 if firstSlot == nil then
     print("Error: you need blocks in the first slot")
@@ -33,30 +35,59 @@ local function switchSlots()
     return false
 end
 
-local function bridgePlace()
+local function place()
     local result = { turtle.place() }
-    if not result[1] then -- If the place failed
-        print(result[2])
+    if not result[1] then
         if result[2] == "No items to place" then
-            if not switchSlots() then
-                print("Cannot switch slots, Can't continue")
-                return false
+            if switchSlots() then
+                return place()
+            else
+                return result
             end
         elseif result[2] == "Cannot place block here" then
             -- Currently, do nothing
         end
     end
-    return true
+end
+
+local function bridge(args)
+    local availableBlocks = buildingBlocks()
+    local length = args[1]
+    local width = args[2]
+    if width == nil then width = 3 end
+    if length == nil then length = (availableBlocks / width) - 1 end
+    local requiredBlocks = length * width
+    if requiredBlocks > availableBlocks then
+        -- Check with the user
+    end
+    -- TODO check fuel
+    local result
+    result = { turtle.forward() }
+    if not result[1] then return result end
+    for l = 1, length do
+        turtle.turnLeft()
+        for w = 1, width - 1 do
+            turtle.back()
+        result = place()
+        if not result[1] then return result end
+        end
+        turtle.turnLeft()
+        result = { turtle.back() }
+        if not result[1] then return result end
+        result = place()
+        if not result[1] then return result end
+    end
+    turtle.up()
+    switchSlots()
+    turtle.placeDown()
 end
 
 -- The first argument is the length
-local availableBlocks = buildingBlocks()
 -- local requiredBlocks = arguments[1] * 3
 -- if requiredBlocks > availableBlocks then
 --     print("Bridge requires ", requiredBlocks, " blocks, but only", availableBlocks, "blocks are available. Needs ",
 --         requiredBlocks - availableBlocks, "more blocks")
 -- end
-local bridgeLength = ((availableBlocks / 3) - 1)
 print("Attempting to build a ", math.floor(bridgeLength), " block long bridge")
 for i = 1, bridgeLength do
     turtle.turnLeft()

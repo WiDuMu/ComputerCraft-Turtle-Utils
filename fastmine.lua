@@ -1,3 +1,4 @@
+local turtle = require("turtle")
 function rotate(angle)
     local rotations = math.tointeger(angle / 90)
     if rotations > 4 then

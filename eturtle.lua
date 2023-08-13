@@ -1,4 +1,4 @@
--- turtle = require("turtle")
+local turtle = require("turtle")
 local eturtle = {}
 local function move(func, distance)
     distance = distance or 1
