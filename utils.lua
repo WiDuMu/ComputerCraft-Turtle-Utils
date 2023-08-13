@@ -1,3 +1,5 @@
+local turtle = require("turtle")
+local eturtleUtils = {}
 Angle = 0
 local function rotateTo(angle)
     Angle = Angle % 4
@@ -26,7 +28,8 @@ local function rotateTo(angle)
     return true
 end
 
-local function refuel()
+-- Refuels from all inventory slots, draining the inventory
+local function refuelFromInventory()
     if turtle.getFuelLimit() == "Unlimited" then
         return
     end
@@ -35,4 +38,18 @@ local function refuel()
         turtle.refuel()
     end
 end
+-- Selects the first slot that holds the specified block
+function eturtleUtils.selectBlock(block)
+    for i=1,16 do
+        local blocks = turtle.getItemDetail(i)
+        if not blocks == nil then
+            if blocks.name == block then
+                turtle.select(i)
+                return true
+            end
+        end
+    end
+    return false
+end
+
 local args = { ... }
