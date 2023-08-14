@@ -1,4 +1,4 @@
-local arguments = { ... }
+local args = { ... }
 local turtle = require("turtle")
 local utils = require("utils")
 local firstSlot = turtle.getItemDetail(1)
@@ -82,32 +82,33 @@ local function bridge(args)
     turtle.placeDown()
 end
 
+print(bridge(args))
 -- The first argument is the length
 -- local requiredBlocks = arguments[1] * 3
 -- if requiredBlocks > availableBlocks then
 --     print("Bridge requires ", requiredBlocks, " blocks, but only", availableBlocks, "blocks are available. Needs ",
 --         requiredBlocks - availableBlocks, "more blocks")
 -- end
-print("Attempting to build a ", math.floor(bridgeLength), " block long bridge")
-for i = 1, bridgeLength do
-    turtle.turnLeft()
-    if not bridgePlace() then
-        break
-    end
-    turtle.turnRight()
-    turtle.turnRight()
-    if not bridgePlace() then
-        break
-    end
-    turtle.turnLeft()
-    if turtle.back() then
-        if not bridgePlace() then
-            break
-        end
-    else
-        print("Obstruction. Can't continue")
-        break
-    end
-end
-turtle.up()
-turtle.placeDown()
+-- print("Attempting to build a ", math.floor(bridgeLength), " block long bridge")
+-- for i = 1, bridgeLength do
+--     turtle.turnLeft()
+--     if not bridgePlace() then
+--         break
+--     end
+--     turtle.turnRight()
+--     turtle.turnRight()
+--     if not bridgePlace() then
+--         break
+--     end
+--     turtle.turnLeft()
+--     if turtle.back() then
+--         if not bridgePlace() then
+--             break
+--         end
+--     else
+--         print("Obstruction. Can't continue")
+--         break
+--     end
+-- end
+-- turtle.up()
+-- turtle.placeDown()
