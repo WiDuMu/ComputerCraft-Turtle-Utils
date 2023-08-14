@@ -52,8 +52,8 @@ end
 
 local function bridge(args)
     local availableBlocks = buildingBlocks()
-    local length = args[1]
-    local width = args[2]
+    local length = tonumber(args[1])
+    local width = tonumber(args[2])
     if width == nil then width = 3 end
     if length == nil then length = (availableBlocks / width) - 1 end
     local requiredBlocks = length * width
