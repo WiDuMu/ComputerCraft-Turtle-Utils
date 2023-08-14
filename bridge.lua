@@ -1,6 +1,5 @@
 local args = { ... }
-local turtle = require("turtle")
-local utils = require("utils")
+-- local turtle = require("turtle")
 local firstSlot = turtle.getItemDetail(1)
 if firstSlot == nil then
     print("Error: you need blocks in the first slot")
