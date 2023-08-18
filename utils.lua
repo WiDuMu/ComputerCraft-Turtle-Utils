@@ -2,7 +2,6 @@ local turtle = require("turtle")
 local eturtleUtils = {}
 Angle = 0
 local function rotateTo(angle)
-    Angle = Angle % 4
     angle = angle % 4
     print("Rotating to position ", angle, " Current angle: ", Angle)
     local diff = angle - Angle
@@ -27,7 +26,10 @@ local function rotateTo(angle)
     Angle = angle
     return true
 end
-
+local function freeInventorySlots()
+    for i=1,16 do
+    end
+end
 -- Refuels from all inventory slots, draining the inventory
 local function refuelFromInventory()
     if turtle.getFuelLimit() == "Unlimited" then
