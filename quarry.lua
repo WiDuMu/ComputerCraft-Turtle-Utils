@@ -1,4 +1,5 @@
 local turtle = require("turtle")
+local utils = require("utils")
 
 local x,y,z = 0,0,0 -- Coords of the turtle
 

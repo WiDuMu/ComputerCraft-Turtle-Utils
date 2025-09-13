@@ -54,4 +54,15 @@ function eturtleUtils.selectBlock(block)
     return false
 end
 
+function manhattanDistance(x1,y1,z1,x2,y2,z2)
+    xDiff = math.abs(x1 - x2) 
+    yDiff = math.abs(y1 - y2)
+    zDiff = math.abs(z1 - z2)
+    return xDiff + yDiff + zDiff
+end
+
+function manhattanDistanceFromOrigin(x,y,z)
+    return manhattanDistance(0,0,0,x,y,z)
+end
+
 local args = { ... }
